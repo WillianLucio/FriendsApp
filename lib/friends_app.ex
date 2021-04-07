@@ -10,5 +10,4 @@ defmodule FriendsApp do
       :test -> "Ambiente de testes"
     end
   end
-  
 end
