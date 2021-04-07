@@ -4,8 +4,8 @@ defmodule FriendsApp.CLI.MenuItems do
   def all,
     do: [
       %Menu{label: "Cadastrar um amigo", id: :create},
-      %Menu{label: "Lista os amigos", id: :read},
-      %Menu{label: "Atualiza um amigo", id: :update},
-      %Menu{label: "Deleta um amigo", id: :delete}
+      %Menu{label: "Listar os amigos", id: :read},
+      %Menu{label: "Atualizar um amigo", id: :update},
+      %Menu{label: "Deletar um amigo", id: :delete}
     ]
 end
