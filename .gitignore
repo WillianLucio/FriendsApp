@@ -25,3 +25,5 @@ friends_app-*.tar
 
 # Temporary files for e.g. tests
 /tmp
+
+/friends.csv

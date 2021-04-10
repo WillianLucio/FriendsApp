@@ -1,4 +1,4 @@
-defmodule FriendsApp.CLI.Menu.Choise do
+defmodule FriendsApp.CLI.Menu.Choice do
   alias Mix.Shell.IO, as: Shell
   alias FriendsApp.CLI.Menu.Items
   alias FriendsApp.DB.CSV
