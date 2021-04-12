@@ -7,7 +7,7 @@ defmodule Mix.Tasks.Utils.AddFakeFriends do
     Faker.start()
 
     create_friends([], 50)
-    |> CSVParse.dump_to_iodata
+    |> CSVParse.dump_to_iodata()
     |> save_csv_file
 
     IO.puts("Amigos cadastrados com sucesso!")
@@ -22,10 +22,10 @@ defmodule Mix.Tasks.Utils.AddFakeFriends do
   end
 
   defp random_list_friend do
-    [ Faker.Person.PtBr.name(), Faker.Internet.email(), Faker.Phone.EnUs.phone() ]
+    [Faker.Person.PtBr.name(), Faker.Internet.email(), Faker.Phone.EnUs.phone()]
   end
 
   defp save_csv_file(data) do
-    File.write!("#{File.cwd!}/friends.csv", data, [:append])
+    File.write!("#{File.cwd!()}/friends.csv", data, [:append])
   end
 end
