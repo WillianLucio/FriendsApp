@@ -17,6 +17,7 @@ defmodule FriendsApp.DB.CSV do
 
   defp create do
     collect_data()
+    |> Map.from_struct()
     |> Map.values()
     |> wrap_in_list()
     |> CSVParser.dump_to_iodata()
@@ -26,7 +27,7 @@ defmodule FriendsApp.DB.CSV do
   defp collect_data do
     Shell.cmd("clear")
 
-    %{
+    %Friend{
       name: prompt_message("Digite o nome: "),
       email: prompt_message("Digite o email: "),
       phone: prompt_message("Digite o telefone: ")
@@ -50,7 +51,7 @@ defmodule FriendsApp.DB.CSV do
     File.read!("#{File.cwd!()}/friends.csv")
     |> CSVParser.parse_string(skip_headers: false)
     |> Enum.map(fn [email, name, phone] ->
-      %{name: name, email: email, phone: phone}
+      %Friend{name: name, email: email, phone: phone}
     end)
     |> Scribe.console(data: [{"NOME", :name}, {"E-MAIL", :email}, {"TELEFONE", :phone}])
   end
