@@ -7,7 +7,7 @@ defmodule FriendsApp.DB.CSV do
   def perform(chosen_menu_item) do
     case chosen_menu_item do
       %Menu{id: :create, label: _} -> create()
-      %Menu{id: :read, label: _} -> Shell.info(">>>>> Read <<<<<")
+      %Menu{id: :read, label: _} -> read()
       %Menu{id: :update, label: _} -> Shell.info(">>>>> Update <<<<<")
       %Menu{id: :delete, label: _} -> Shell.info(">>>>> Delete <<<<<")
     end
@@ -44,5 +44,14 @@ defmodule FriendsApp.DB.CSV do
 
   defp save_csv_file(data) do
     File.write!("#{File.cwd!()}/friends.csv", data, [:append])
+  end
+
+  defp read do
+    File.read!("#{File.cwd!()}/friends.csv")
+    |> CSVParser.parse_string(skip_headers: false)
+    |> Enum.map(fn [email, name, phone] ->
+      %{name: name, email: email, phone: phone}
+    end)
+    |> Scribe.console(data: [{"NOME", :name}, {"E-MAIL", :email}, {"TELEFONE", :phone}])
   end
 end
